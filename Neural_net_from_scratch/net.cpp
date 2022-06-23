@@ -64,26 +64,35 @@ public:
 	}
 
 	void get_adjustments(Vector<float, 10> &labels_one_hot) {
-		//finding the loss - later shoudl rly use cross entropy
-		MatrixXf dz_out = pass_out.rowwise() - labels_one_hot.transpose();
+		//using simple subtraction for loss, should really use cross entropy
 
-		//first layer weights
-		MatrixXf dw_out = (dz_out.transpose() * activation2) / labels_one_hot.size();
+		//out layer
+		MatrixXf dz_out = activation_out.rowwise() - labels_one_hot.transpose();
+		dw_out = (dz_out.transpose() * activation2) / labels_one_hot.size();
+		//this might be activation2
 		MatrixXf p2_inv = pass2.unaryExpr(&relu_derivative);
 
-		cout << "rows: " << Out.rows() << " cols: " << Out.cols() << endl;
-		cout << "rows: " << dz_out.rows() << " cols: " << dz_out.cols() << endl;
-		cout << "rows: " << p2_inv.rows() << " cols: " << p2_inv.cols() << endl;
+		//third layer
+		MatrixXf dz_2 = (Out * dz_out.transpose()) * p2_inv;
+		dw_2 = (dz_2 * activation1.transpose()) / labels_one_hot.size();
+		db_2 = dz_2 / labels_one_hot.size();
+		//this might be activation1
+		MatrixXf p1_inv = pass1.unaryExpr(&relu_derivative);
 
-		//second layer weights and biases
-		MatrixXf dz_2 = Out * dz_out.transpose();
-		cout << dz_2.rows() << "   " << dz_2.cols() << endl;
-		/*MatrixXf dw_2 = (dz_2 * activation1) / labels_one_hot.size();
-		MatrixXf db_2 = dz_2 / labels_one_hot.size();*/
+		//second layer
+		MatrixXf dz_1 = (W2 * dz_2) * p1_inv.transpose();
+		dw_1 = (dz_1 * Input) / labels_one_hot.size();
+		db_1 = dz_1 / labels_one_hot.size();
 	}
 
 	void backpropagation() {
-	
+		Out = Out - learning_rate * dw_out;
+
+		W2 = W2 - learning_rate * dw_2;
+		b2 = b2 - learning_rate * db_2;
+
+		W1 = W1 - learning_rate * dw_1;
+		b2 = b2 - learning_rate * db_1;
 	}
 
 private:
@@ -108,6 +117,18 @@ private:
 	MatrixXf activation2;
 	MatrixXf pass_out;
 	MatrixXf activation_out;
+
+	//variables for getting the difference for weights and biases
+	MatrixXf dw_out;
+	MatrixXf dw_2;
+	MatrixXf db_2;
+	MatrixXf dw_1;
+	MatrixXf db_1;
+
+	//hyperparams
+	int epochs = 100;
+	int batch_size = 10;
+	float learning_rate = 0.001;
 };
 
 int main() {
