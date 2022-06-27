@@ -7,7 +7,6 @@
 using namespace std;
 using namespace Eigen;
 
-
 Net::Net(int epoch, int batch_s, float l_rate) {
 	epochs = epoch;
 	batch_size = batch_s;
@@ -40,7 +39,7 @@ void Net::forward_pass(MatrixXf& data) {
 	activation_out = softmax(pass_out);
 }
 
-void Net::get_adjustments(Vector<float, 10> &labels_one_hot) {
+void Net::backpropagate(VectorXf &labels_one_hot) {
 	//TODO: using simple subtraction for loss, should really use cross entropy
 
 	//out layer
@@ -60,7 +59,7 @@ void Net::get_adjustments(Vector<float, 10> &labels_one_hot) {
 	db_1 = dz_1 / labels_one_hot.size();
 }
 
-void Net::backpropagate() {
+void Net::adjust() {
 	Out = Out - learning_rate * dw_out.transpose();
 
 	W2 = W2 - learning_rate * dw_2.transpose();
@@ -68,4 +67,17 @@ void Net::backpropagate() {
 
 	W1 = W1 - learning_rate * dw_1.transpose();
 	b2 = b2 - learning_rate * db_1;
+}
+
+void Net::train(vector<Data> &train_data) {
+	for (int i = 0; i < epochs; i++) {
+		for (int j = 0; j < train_data.size(); j++) {
+			Data data = train_data[j];
+			MatrixXf input = data.get_image();
+			VectorXf label = one_hot_encode(data.get_label());
+			forward_pass(input);
+			backpropagate(label);
+			adjust();
+		}
+	}
 }

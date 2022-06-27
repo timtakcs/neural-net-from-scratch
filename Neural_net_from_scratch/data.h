@@ -14,4 +14,5 @@ public:
 	Data(MatrixXf& image, int label);
 	void flatten();
 	int get_label();
+	MatrixXf get_image();
 };

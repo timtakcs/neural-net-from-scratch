@@ -1,19 +1,16 @@
 #include <iostream> 
 #include <Eigen/Dense>
 #include "net.h"
+#include "loader.h"
+#include "data.h"
 
 using namespace std;
 
 int main() {
 	Net net(100, 10, 0.001);
-	MatrixXf inp = MatrixXf::Random(1, 100);
+	Loader loader;
+	vector<Data> x = loader.load_train();
+	vector<Data> test = loader.load_test();
 
-	net.forward_pass(inp);
-	Vector<float, 10> labels;
-
-	labels << 0, 0, 1, 0, 0, 0, 0, 0, 0, 0;
-	net.get_adjustments(labels);
-	net.backpropagate();
-
-	MatrixXf test;
+	net.train(x);
 }

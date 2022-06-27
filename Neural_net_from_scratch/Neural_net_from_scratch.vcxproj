@@ -145,7 +145,7 @@
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="data.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="loader.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>

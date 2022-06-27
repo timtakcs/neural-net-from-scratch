@@ -1,6 +1,7 @@
 #pragma once
 #include <Eigen/Dense>
 #include <vector>
+#include "data.h"
 
 using namespace Eigen;
 
@@ -43,7 +44,7 @@ public:
 	Net(int epochs, int batch_size, float learning_rate);
 	void init_weights();
 	void forward_pass(MatrixXf& data);
-	void get_adjustments(Vector<float, 10>& labels_one_hot);
-	void backpropagate();
-	/*void train(std::vector<MatrixXf> batch);*/
+	void backpropagate(VectorXf& labels_one_hot);
+	void adjust();
+	void train(std::vector<Data> &train_data);
 };

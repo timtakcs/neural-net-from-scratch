@@ -39,3 +39,9 @@ MatrixXf softmax(MatrixXf out) {
 	out = out.matrix();
 	return out;
 }
+
+VectorXf one_hot_encode(int lbl) {
+	VectorXf label = VectorXf::Zero(10);
+	label(lbl - 1) = 1;
+	return label;
+}
