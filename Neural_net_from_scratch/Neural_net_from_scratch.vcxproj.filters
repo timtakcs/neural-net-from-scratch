@@ -33,6 +33,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net.h">
@@ -41,13 +47,19 @@
     <ClInclude Include="functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="loader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\..\Programming\NN-from-nothin\mnist_train.csv">
-      <Filter>Datasets</Filter>
-    </None>
     <None Include="..\..\..\..\..\..\Programming\NN-from-nothin\mnist_test.csv">
-      <Filter>Datasets</Filter>
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\Programming\NN-from-nothin\mnist_train.csv">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
 </Project>

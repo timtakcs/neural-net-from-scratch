@@ -144,10 +144,14 @@
     <ClCompile Include="net.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="data.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h" />
+    <ClInclude Include="data.h" />
+    <ClInclude Include="loader.h" />
     <ClInclude Include="net.h" />
   </ItemGroup>
   <ItemGroup>
