@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Datasets">
+      <UniqueIdentifier>{1df00b1b-49f9-4cfa-a555-20fecce65abf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="matrix_test.cpp">
@@ -38,5 +41,13 @@
     <ClInclude Include="functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\Programming\NN-from-nothin\mnist_train.csv">
+      <Filter>Datasets</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\Programming\NN-from-nothin\mnist_test.csv">
+      <Filter>Datasets</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -150,6 +150,10 @@
     <ClInclude Include="functions.h" />
     <ClInclude Include="net.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\Programming\NN-from-nothin\mnist_test.csv" />
+    <None Include="..\..\..\..\..\..\Programming\NN-from-nothin\mnist_train.csv" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
