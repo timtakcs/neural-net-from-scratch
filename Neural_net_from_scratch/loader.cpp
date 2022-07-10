@@ -15,9 +15,10 @@ std::vector<Data> Loader::load_train() {
 
 	std::vector<std::vector<float>> temp_image;
 	MatrixXf img_mx(28, 28);
-	std::vector<Data> data;
 
+	std::vector<Data> data;
 	std::string label;
+
 	std::getline(train, label, ',');
 
 	while (train.good()) {

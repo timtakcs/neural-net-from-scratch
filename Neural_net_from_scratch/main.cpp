@@ -13,4 +13,6 @@ int main() {
 	vector<Data> test = loader.load_test();
 
 	net.train(x);
+
+
 }

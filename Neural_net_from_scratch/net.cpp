@@ -15,11 +15,11 @@ Net::Net(int epoch, int batch_s, float l_rate) {
 }
 
 void Net::init_weights() {
-	W1 = Matrix<float, 100, 64>::Random() * sqrt(2 / 784);
-	b1 = Vector<float, 64>::Random();
+	W1 = Matrix<float, 784, 64>::Random() * sqrt(2 / 784);
+	b1 = Vector<float, 64>::Random() * sqrt(2 / 784);
 	
 	W2 = Matrix<float, 64, 64>::Random() * sqrt(2 / 64);
-	b2 = Vector<float, 64>::Random();
+	b2 = Vector<float, 64>::Random() * sqrt(2 / 64);
 	
 	Out = Matrix<float, 64, 10>::Random() * sqrt(1 / 64);
 }
@@ -40,8 +40,6 @@ void Net::forward_pass(MatrixXf& data) {
 }
 
 void Net::backpropagate(VectorXf &labels_one_hot) {
-	//TODO: using simple subtraction for loss, should really use cross entropy
-
 	//out layer
 	MatrixXf dz_out = activation_out.rowwise() - labels_one_hot.transpose();
 	dw_out = (dz_out.transpose() * activation2) / labels_one_hot.size();
@@ -72,6 +70,7 @@ void Net::adjust() {
 void Net::train(vector<Data> &train_data) {
 	for (int i = 0; i < epochs; i++) {
 		for (int j = 0; j < train_data.size(); j++) {
+			cout << j;
 			Data data = train_data[j];
 			MatrixXf input = data.get_image();
 			VectorXf label = one_hot_encode(data.get_label());

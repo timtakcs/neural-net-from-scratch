@@ -8,10 +8,10 @@ using namespace Eigen;
 class Net {
 private:
 	//input layer
-	Matrix<float, 1, 100> Input;
+	Matrix<float, 1, 784> Input;
 
 	//first hidden layer
-	Matrix<float, 100, 64> W1;
+	Matrix<float, 784, 64> W1;
 	Vector<float, 64> b1;
 
 	//second hidden layer
